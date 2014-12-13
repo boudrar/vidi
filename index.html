@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8"/>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!--<script src='https://cdn.firebase.com/js/client/1.1.1/firebase.js'></script>-->	
+	
+	<script src="/socket.io/socket.io.js"></script>
+</head>
+	<body>
+		
+		<header class="header">
+			
+			<div class="header-navigation-button"></div>
+
+			<div class="header-search">
+				<input class="header-search-input" type="text" placeholder="kittens">
+			</div>
+			
+			<div class="header-form-toggle"></div>
+			<div class="header-form-container">
+				<form class="header-form" method="post">
+					<input placeholder="username" name="user-name" class="header-form-input header-form-name-input" type="text">
+					<input placeholder="password" name="user-password" class="header-form-input header-form-password-input" type="password">
+					<button class="header-form-input" type='submit'>Login</button>
+
+					<div class="header-form-separator">or</div>
+					<button class="header-form-input header-form-create-user">Sign up</button>
+					<div class="header-form-alert"></div>
+				</form>				
+			</div>
+			<div class="header-disconnect" title="Log Out"></div>
+		</header>
+
+		<nav class="navigation">
+			<div class="navigation-profil">
+				<div class="navigation-profil-image">
+					<div class="img"></div>
+				</div>
+				<div class="navigation-profil-info">
+					<h3 class="navigation-profil-username"></h3>
+					<h4>uploaded : 1</h4>
+					<h4>liked : 23</h4>
+					<h4>comments : 124</h4>
+				</div>
+			</div>
+			<div class="navigation-menu">
+				<div class="menu_item menu_home"><h3>home</h3></div>
+				<div class="menu_item menu_profil"><h3>profil</h3></div>
+				<div class="menu_item menu_gallery"><h3>gallery</h3></div>
+			</div>
+			<div class="menu_color">
+				<div class="menu_color_item" data-theme='1'></div>
+				<div class="menu_color_item" data-theme='2'></div>
+				<div class="menu_color_item" data-theme='3'></div>
+				<div class="menu_color_item" data-theme='4'></div>
+			</div>
+		</nav>
+
+		<div id='App'></div>
+		<!-- <div class="triangle-container">
+			<div class="triangle"></div>
+		</div> -->
+		<div class="cube">
+			<div class="cube-face cube-face-front"></div>
+		    <div class="cube-face cube-face-back"></div>
+		    <div class="cube-face cube-face-left"></div>
+		    <div class="cube-face cube-face-right"></div>
+		    <div class="cube-face cube-face-bottom"></div>
+		    <div class="cube-face cube-face-top"></div>
+	    </div>
+
+	    <div class="loader">
+	    	<div class="loader-ball"></div>
+	    	<div class="loader-ball"></div>
+	    	<div class="loader-ball"></div>
+	    </div>
+		
+	</body>
+	
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/underscore/underscore.js"></script>
+	<script src="bower_components/backbone/backbone.js"></script>
+  	<script src="bower_components/marionette/lib/backbone.marionette.min.js"></script>
+
+  	<script src="js/session.js"></script>
+
+	<!-- Templates -->
+ 	<script id="home-tpl" type="text/x-template" src="js/backbone/templates/home.tpl"></script>
+ 	<script id="profil-tpl" type="text/x-template" src="js/backbone/templates/profil.tpl"></script>
+ 	<script id="gallery-tpl" type="text/x-template" src="js/backbone/templates/gallery.tpl"></script>
+
+	<!-- Views -->
+	<script src="js/backbone/views/header.js"></script>
+	<script src="js/backbone/views/navigation.js"></script>
+  	<script src="js/backbone/views/home.js"></script>
+  	<script src="js/backbone/views/profil.js"></script>
+  	<script src="js/backbone/views/gallery.js"></script>
+  	
+
+
+	<script src="js/init.js"></script>
+	<script src="js/app.js"></script>
+
+	
+
+</html>

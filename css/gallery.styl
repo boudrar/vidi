@@ -1,0 +1,45 @@
+.gallery
+	margin 0 auto
+	max-width 800px
+	width 80%
+	padding-top 50px
+	perspective 99999px
+	
+.gallery_item_full
+	width 100% 
+.gallery_item_large
+	width calc(50% - 2px)
+	height 198px !important
+.gallery_item_big
+	width calc(50% - 2px)
+.gallery_item_normal
+	width calc(25% - 2px)
+.gallery_item_small
+	width calc(12.5% - 2px)
+.gallery_item
+	position relative
+	margin 1px
+	background Black
+	box-shadow inset 0 0 10px 0 Black
+	float left
+	transition 350ms ease-in-out
+	transform-style preserve-3d
+	transform-origin 0 0
+	&:before
+		content ''
+		position absolute
+		width 100%
+		height 100%  
+		transform-origin 0 100%
+		transform rotateX(-90deg) translateY(100%)
+		background rgba(0,0,0,0.5) 
+		box-shadow inset 0 10px 100px 0 Black
+		transition 500ms
+	&:hover
+		box-shadow inset 0 10px 60px 0 Black
+		z-index 999
+		transform rotateX(90deg) translateY(-100%)
+		&:before
+			background BlackLight 
+			box-shadow inset 0 0 10px 0 Black
+		
