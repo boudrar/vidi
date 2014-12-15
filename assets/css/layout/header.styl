@@ -1,0 +1,246 @@
+
+.header
+	position fixed
+	z-index 2
+	top - (headerHeight + 5)
+	left 0
+	width 100% 
+	height headerHeight
+	background BlackLight
+	transition top 500ms
+	&:after
+		content ''
+		backface-visibility hidden
+		position absolute		
+		left 0
+		top 100%
+		width 100%
+		height 1px
+		background linear-gradient(90deg,transparent,black,transparent);
+	&.on
+		top 0
+///////////////////////////////////////////
+
+.header-navigation-button
+	@extend .button-hover
+	position absolute
+	top 5px
+	left @top
+	width iconSize
+	height @width  
+	background BlackLight
+	border-radius borderRadius
+	box-sizing border-box
+	border 1px solid BlackLight
+	transition 500ms
+	text-align center
+	&:before
+		content '\f0c9'
+		font-family FontAwesome
+		font-size iconSize * 0.8
+		line-height iconSize
+		color White
+	&.on
+		background Black
+
+///////////////////////////////////////////		
+
+.header-search
+	position absolute
+	top 50%
+	left iconSize + 15
+	transform translateY(-50%)
+	&:after
+		position absolute
+		content '\f002'
+		font-family FontAwesome 
+		color White
+		font-size iconSize - 10
+		right 5px
+		top 5px 
+.header-search-input
+	width 200px	
+	padding-right iconSize*0.5 + 5
+	border none
+	color White
+	appearance none
+	background BlackLight
+	height iconSize
+	border-radius borderRadius
+	font-weight bold
+	font-size fontSize*3   
+	text-align center
+	box-shadow 0 0 0 1px Black  
+	box-sizing border-box
+
+///////////////////////////////////////////
+
+.header-title
+	@extend .absolute-center
+	font-size fontSize*4
+	text-transform uppercase
+	color White 
+	
+
+///////////////////////////////////////////
+
+.header-form-toggle
+	@extend .button-hover
+	position absolute
+	right 0
+	top 0
+	margin 5px
+	width iconSize
+	height @width
+	border-radius borderRadius
+	background BlackLight
+	border 1px solid BlackLight
+	text-align center
+	box-sizing border-box
+	transform translateX(100%)
+	opacity 0
+	visibility hidden
+	transition 500ms
+	&:before
+		font-family FontAwesome
+		font-size iconSize - 10
+		line-height iconSize 
+		color White
+	&.on
+		visibility visible
+		transform translateX(0%)
+		opacity 1
+.header-form-login-toggle
+	&:before
+		content '\f007'
+	
+.header-form-logout-toggle
+	&:before
+		content '\f13e'
+		
+.header-form-upload-toggle
+	&.on		
+		right 5px
+		transform translateX(-100%)
+	&:before
+		content '\f0ee'
+	
+ headerFormWidth = 200px
+.header-form-container
+	position absolute
+	z-index 1
+	top headerHeight + 10 
+	right 10px
+	padding 10px
+	backface-visibility hidden
+	border-radius borderRadius 
+	overflow hidden
+	visibility hidden
+	transition visibility 0ms 500ms
+	&:before
+		content ''
+		position absolute
+		top -50%
+		right -50%
+		width 0
+		height 0
+		z-index -1
+		background BlackLight
+		border-radius 50%
+		transition 750ms
+		
+	&.on
+		visibility visible
+		transition visibility 0
+		&:before
+			width 200%
+			height @width
+			
+.header-form-container.on > .header-form
+	opacity 1
+	transition opacity 250ms 500ms
+		
+.header-form
+	position relative
+	width headerFormWidth 
+	opacity 0
+	transition opacity 250ms
+	> p
+		font-size fontSize*3 
+		color White
+		text-align center
+		margin 5px 0
+		
+.header-form-input
+	@extend .button
+	width 100%
+	height iconSize
+	font-size fontSize*2.5 
+	padding 5px  
+	margin 2px 0
+	appearance none
+	border none
+	outline none
+	background White 
+	box-sizing border-box
+.header-form-input-button
+	@extend .header-form-input
+	line-height iconSize - 10
+	text-align center
+	text-transform uppercase
+	cursor pointer
+
+.header-form-logout > .header-form-input
+	width calc(50% - 4px)
+	float left
+	margin 2px
+	text-transform uppercase
+	font-size fontSize*2 
+	
+
+.header-form-separator
+	//width 100% 
+	color White
+	font-size fontSize*2 
+	text-align center
+	padding 5px 0
+	&:before,&:after
+		content ''
+		display inline-block
+		width 40%
+		height 1px
+		margin 4px 6px 
+		background White  
+		
+
+.header-form-alert
+	text-align center
+	font-weight bold 
+	font-size 0
+	transition 500ms
+	&.error
+		color red
+	&.success
+		color green
+	&.on
+		margin-top 5px
+		font-size fontSize*2
+
+//UPLOAD
+.header-form-upload-drop
+	background BlackLight
+	height 200px
+	border-radius borderRadius
+	border 1px solid dotted
+.header-form-upload-input
+	opacity 0
+.header-form-upload-input-overlay
+	pointer-events none
+	position absolute
+.header-form-upload-progress
+	position relative
+	bottom 5px
+	height 2px
+	width 0
+	border-radius borderRadius
+	background red 

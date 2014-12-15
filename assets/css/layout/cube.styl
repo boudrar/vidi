@@ -1,0 +1,42 @@
+cube_size = 400px
+.cube
+	position fixed
+	width cube_size
+	height cube_size  
+	bottom 0
+	right 0
+	transform-style preserve-3d
+	perspective 9999px
+	animation cube-rotate 120s infinite both linear
+.cube-face
+	position absolute
+	width 100%
+	height 100%
+	box-shadow 0 0 1px 0 Black
+	for face in 1..6
+		&:nth-of-type({face})
+			background rgba(black,face/50)
+	//background Black
+		
+cube_translate = cube_size/2
+.cube-face-front
+	transform translate3d(0, 0, cube_translate)
+.cube-face-back 
+	transform rotateY(180deg) translate3d(0, 0, cube_translate)
+.cube-face-left 
+	transform rotateY(-90deg) translate3d(0, 0, cube_translate)
+.cube-face-right 
+	transform rotateY(90deg) translate3d(0, 0, cube_translate)
+.cube-face-top 
+	transform rotateX(90deg) translate3d(0, 0, cube_translate)
+.cube-face-bottom 
+	transform rotateX(-90deg) translate3d(0, 0, cube_translate)	
+
+
+@keyframes cube-rotate
+	0%
+		transform rotateX(0deg) rotateY(0deg)
+	50%
+		transform rotateX(180deg) rotateY(180deg)
+	100%
+		transform rotateX(360deg) rotateY(360deg)
