@@ -347,6 +347,17 @@ button {
 .menu_item {
   cursor: pointer;
 }
+.absolute-center,
+.header-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
 .header {
   position: fixed;
   z-index: 2;
@@ -450,6 +461,11 @@ button {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+.header-title {
+  font-size: 32px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
 }
 .header-form-toggle,
 .header-disconnect {

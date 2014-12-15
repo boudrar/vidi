@@ -1,7 +1,7 @@
 // Nodejs encryption with CTR
 var crypto = require('crypto'),
     algorithm = 'aes-256-ctr',
-    password = '1234';
+    password = 'vidi';
  
 exports.encrypt = function(text){
   var cipher = crypto.createCipher(algorithm,password)
