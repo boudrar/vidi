@@ -8,6 +8,7 @@ App.UserConnected = function(user){
 App.UserDisconnect = function(){
 	App.Log = false;
 	delete App.User;
+	sessionStorage.clear();
 	App.UpdateInterface();
 }
 

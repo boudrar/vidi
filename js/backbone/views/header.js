@@ -87,10 +87,12 @@ App.Views.Header = Marionette.ItemView.extend({
   },
   
   signForm:function(){
+
     var user = {
       username:$(this.ui.header_form_name).val(),
       password:$(this.ui.header_form_password).val()
     }
+    console.log(user);
     App.socket.emit('signup',user);
   },
 

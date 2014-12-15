@@ -42,13 +42,7 @@ io.on('connection', function(socket){
 });
 
 App.createUser = function(User,socket){
-	mongoose_model.userid.findOne({ _id: 'UserId' }, function (err, userId){
-	  userId.seq++;
-	  User.id = userId.seq;
-	  userId.save();
-	});
-	 
-	var user = new mongoose_model.user({ id:User.id,username : User.username,password:crypto.encrypt(User.password) });
+	var user = new mongoose_model.user({ username : User.username,password:crypto.encrypt(User.password) });
 
 	user.save(function (err) {
 	  if (err) { 
@@ -70,22 +64,6 @@ App.createUser.success = function(socket,alert,user){
 }
 
 
-/*var UniqueId = new mongoose_model.userid({ _id : 'UserId' ,seq : 0});
-
-UniqueId.save(function (err) {
-  if (err) { throw err; }
-  console.log(UniqueId._id + ' ajouté avec succès !');
-  // On se déconnecte de MongoDB maintenant
-  mongoose.connection.close();
-});*/
-
-/*mongoose_model.userid.find(null, function (err, userId) {
-  if (err) { throw err; }
-
-  console.log(userId);
-});*/
-
-
 App.checkUser = function(_user,socket){
 	mongoose_model.user.findOne({username:_user.username}, function (err, user) {
 
@@ -93,7 +71,7 @@ App.checkUser = function(_user,socket){
 
 	  if(user!=undefined){
 
-	  	if(user.password == _user.password) App.checkUser.success(socket,'Success !',user);
+	  	if(crypto.decrypt(user.password) == _user.password) App.checkUser.success(socket,'Success !',user);
 			else App.checkUser.fail(socket,'wrong password');
 
 	  }else App.checkUser.fail(socket,'wrong username & password');
@@ -108,12 +86,3 @@ App.checkUser.success = function(socket,alert,user){
 	console.log('check success');
 	socket.emit('form-alert',alert,'success',user);
 }
-
-
-/*mongoose_model.userid.findOne({ _id: 'UserId' }, function (err, userId){
-
-  userId.seq++;
-  userId.save();
-
-});
-*/
