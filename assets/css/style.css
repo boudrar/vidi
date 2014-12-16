@@ -947,6 +947,11 @@ button {
   -webkit-border-radius: 2px;
   border-radius: 2px;
   border: 1px solid dotted;
+  text-align: center;
+  line-height: 200px;
+  color: rgba(255,255,255,0.9);
+  text-transform: uppercase;
+  font-size: 24px;
 }
 .header-form-upload-input {
   opacity: 0;
@@ -959,12 +964,25 @@ button {
 }
 .header-form-upload-progress {
   position: relative;
-  bottom: 5px;
-  height: 2px;
+  height: 0;
+  margin-top: 0;
   width: 0;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  background: #e51c23;
+  background: -webkit-linear-gradient(0deg, rgba(0,214,242,0.75), rgba(77,95,193,0.75));
+  background: -moz-linear-gradient(0deg, rgba(0,214,242,0.75), rgba(77,95,193,0.75));
+  background: -o-linear-gradient(0deg, rgba(0,214,242,0.75), rgba(77,95,193,0.75));
+  background: -ms-linear-gradient(0deg, rgba(0,214,242,0.75), rgba(77,95,193,0.75));
+  background: linear-gradient(90deg, rgba(0,214,242,0.75), rgba(77,95,193,0.75));
+  -webkit-transition: 500ms;
+  -moz-transition: 500ms;
+  -o-transition: 500ms;
+  -ms-transition: 500ms;
+  transition: 500ms;
+}
+.header-form-upload-progress.on {
+  height: 5px;
+  margin-top: 5px;
 }
 .navigation {
   position: fixed;

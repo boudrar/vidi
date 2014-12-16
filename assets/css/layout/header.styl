@@ -232,6 +232,11 @@
 	height 200px
 	border-radius borderRadius
 	border 1px solid dotted
+	text-align center
+	line-height @height
+	color White
+	text-transform uppercase
+	font-size fontSize*3 
 .header-form-upload-input
 	opacity 0
 .header-form-upload-input-overlay
@@ -239,8 +244,12 @@
 	position absolute
 .header-form-upload-progress
 	position relative
-	bottom 5px
-	height 2px
+	height 0
+	margin-top 0
 	width 0
 	border-radius borderRadius
-	background red 
+	background linear-gradient(90deg,lighten(rgba(cyan,.75),10%),lighten(rgba(indigo,.75),10%)) 
+	transition 500ms
+	&.on
+		height 5px
+		margin-top 5px

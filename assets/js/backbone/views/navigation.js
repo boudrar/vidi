@@ -115,3 +115,9 @@ App.Views.Navigation = Marionette.ItemView.extend({
 
 App.Navigation = new App.Views.Navigation();
 
+App.socket.on('update-profil',function(msg,user){
+  console.log('update profil',user,msg);
+  App.User = user;
+  sessionStorage.setItem('user',JSON.stringify(App.User));
+  App.Navigation.updateNavigation(App.User);
+});

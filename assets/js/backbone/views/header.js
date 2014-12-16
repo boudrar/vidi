@@ -46,7 +46,7 @@ App.Views.Header = Marionette.ItemView.extend({
     
     'click @ui.header_navigation_button':'toggleNavigation',
     
-    //LOGIN FORM
+    //LOGIN & SIGN FORM
     'click @ui.header_form_login_toggle':'toggleLogForm',
 
     'submit @ui.header_form_login':'loginForm',
@@ -56,7 +56,7 @@ App.Views.Header = Marionette.ItemView.extend({
     //LOGOUT FORM
     'click @ui.header_form_logout_toggle':'toggleLogOut',
     'click @ui.header_form_logout_confirm':'logOut',
-    'click @ui.header_form_logout_hide':'closeForms',
+    'click @ui.header_form_logout_hide':'closeLogOut',
 
     //VIDEO FORM
     'click @ui.header_form_upload_toggle':'toggleUpload',
@@ -116,7 +116,8 @@ App.Views.Header = Marionette.ItemView.extend({
 
   },
   
-  signForm:function(){
+  signForm:function(e){
+    e.preventDefault();
 
     var user = {
       username:$(this.ui.header_form_name).val(),
@@ -170,7 +171,8 @@ App.Views.Header = Marionette.ItemView.extend({
 
     var formData = new FormData();
     var video = $(this.ui.header_form_upload_input).prop('files')[0];
-    video.socket = App.socket;
+    video.userId = App.User._id;
+    console.log(video);
     formData.append('video',video,video.name);
 
     console.log(formData);
@@ -178,30 +180,24 @@ App.Views.Header = Marionette.ItemView.extend({
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/post', true);
     xhr.send(formData);
+  },
 
+  showUploadProgress:function(){
+    $(this.ui.header_form_upload_progress).toggleClass('on');
+  },
 
+  hideUploadProgress:function(){
+    var $progress = $(this.ui.header_form_upload_progress);
+    $progress.removeClass('on');
+    _.delay(function(){ $progress.width(0); },500)
+  },
 
-    /*$.ajax({
-      type: "POST",
-      url: '/post',
-      data: video,
-      cache: false,
-      processData: false,
-      contentType: false,
-      success: function(){
-        console.log('success')
-      },
-      error: function(){
-        console.log('fail')
-      }
-    });*/
-
-
+  updateUploadProgress : function(ratio){
+    $(this.ui.header_form_upload_progress).width(ratio + '%');
   }
 
-
-
 });
+
 
 App.Header = new App.Views.Header();
 
@@ -210,9 +206,19 @@ App.socket.on('form-alert',function(alert,type,user){
   App.Header.formAlert(alert,type,user);
 });
 
+App.socket.on('upload-start',function(){
+  console.log('socket receive upload start')
+  App.Header.showUploadProgress();
+});
+
 App.socket.on('upload-progress',function(ratio){
-  console.log('socket emit upload-progress : ' + ratio);
-  $(App.Header.ui.header_form_upload_progress).width(ratio + '%')
+  console.log('socket receive upload-progress : ' + ratio);
+  App.Header.updateUploadProgress(ratio);  
+});
+
+App.socket.on('upload-finish',function(){
+  console.log('socket receive upload finish')
+  App.Header.hideUploadProgress();
 });
 
 App.UserConnected = function(user){
