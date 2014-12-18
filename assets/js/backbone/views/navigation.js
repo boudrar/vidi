@@ -43,9 +43,9 @@ App.Views.Navigation = Marionette.ItemView.extend({
         $(this.ui.navigation_profil_video_liked).text(App.User.video.liked);  
         $(this.ui.navigation_profil_video_shared).text(App.User.video.shared);  
         $(this.ui.navigation_profil_video_comments).text(App.User.video.comments);  
-        //this.openProfil();  
+        this.openProfil();  
         var self = this;
-        _.delay(function(){ self.openNavigation(); },500);  
+        //_.delay(function(){ self.openNavigation(); },500);  
         break;
       case false:
         this.closeProfil();
