@@ -43,7 +43,7 @@ App.Views.Navigation = Marionette.ItemView.extend({
         $(this.ui.navigation_profil_video_liked).text(App.User.video.liked);  
         $(this.ui.navigation_profil_video_shared).text(App.User.video.shared);  
         $(this.ui.navigation_profil_video_comments).text(App.User.video.comments);  
-        this.openProfil();  
+        //this.openProfil();  
         var self = this;
         _.delay(function(){ self.openNavigation(); },500);  
         break;
@@ -65,7 +65,7 @@ App.Views.Navigation = Marionette.ItemView.extend({
     if(!$(this.ui.menu_home).hasClass('on')){
       this.toggleMenuItem(e);
       delete App.Home;
-      App.Home = new App.Views.Home();
+      App.Home = new App.Views.Home({ collection:App.VideoCollections });
       App.loadMenuRegion(App.Home);
     }
   },
@@ -116,8 +116,8 @@ App.Views.Navigation = Marionette.ItemView.extend({
 App.Navigation = new App.Views.Navigation();
 
 App.socket.on('update-profil',function(msg,user){
-  console.log('update profil',user,msg);
+  console.log('socket update profil receive',msg,user);
   App.User = user;
-  sessionStorage.setItem('user',JSON.stringify(App.User));
+  localStorage.setItem('user',JSON.stringify(App.User));
   App.Navigation.updateNavigation(App.User);
 });

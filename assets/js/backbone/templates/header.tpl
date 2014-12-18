@@ -45,11 +45,9 @@
 <!-- Video Upload Form -->
 <div class="header-form-container header-form-upload-container">
 	<form method="post" action="/post" class="header-form header-form-upload" enctype="multipart/form-data">
-		<p>Upload</p>
-		<div class="header-form-input-button header-form-upload-input-overlay">Choose File</div>
+		<div class="header-form-input-button header-form-upload-input-overlay">Upload Video</div>
 		<input class="header-form-input-button header-form-upload-input" name="video" type="file">
-		<button class="header-form-input-button">Upload</button>
-		<div class="header-form-upload-drop">drop file</div>
+		<div class="header-form-upload-drop">drop video</div>
 		<div class="header-form-upload-progress"></div>
 	</form>
 </div>

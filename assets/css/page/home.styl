@@ -2,11 +2,32 @@
 	padding 0 10px
 h1
 	text-align center
-section
-	height 400px
-	width 100%
-	max-width 800px 
-	margin 2px auto
-	background BlackLight
+.home-video-thumb
+	position relative
+	float left
+	width calc(25% - 10px)
+	height 200px
+	margin 5px
+	background Black
+	cursor pointer
 	border-radius borderRadius
-	
+	transition 500ms
+	opacity 0
+	&:before
+		content '\f04b'
+		font-family FontAwesome
+		@extend .absolute-center
+		color Black
+		font-size iconSize
+		transition 500ms
+	&:hover
+		background BlackLight
+		&:before
+			transform translateX(-50%) translateY(-50%) scale(1.2)
+	&.on
+		opacity 1
+.home-video-thumb-title
+	width 100% 
+	color White
+	text-align center
+		 

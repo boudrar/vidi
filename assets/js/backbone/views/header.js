@@ -60,7 +60,7 @@ App.Views.Header = Marionette.ItemView.extend({
 
     //VIDEO FORM
     'click @ui.header_form_upload_toggle':'toggleUpload',
-    'submit @ui.header_form_upload':'upload'
+    'change @ui.header_form_upload_input':'upload'
 
   },
 
@@ -171,28 +171,37 @@ App.Views.Header = Marionette.ItemView.extend({
 
     var formData = new FormData();
     var video = $(this.ui.header_form_upload_input).prop('files')[0];
-    video.userId = App.User._id;
+    video.socketId = App.socket.io.engine.id
     console.log(video);
     formData.append('video',video,video.name);
 
-    console.log(formData);
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/post', true);
+    var xhr = new XMLHttpRequest(),
+        params = '?sid='+video.socketId+'&uid='+App.User._id;
+    xhr.open('POST', '/post/'+params, true);
     xhr.send(formData);
   },
 
   showUploadProgress:function(){
-    $(this.ui.header_form_upload_progress).toggleClass('on');
+    console.log('upload start');
+    $(this.ui.header_form_upload_progress).addClass('on');
   },
 
   hideUploadProgress:function(){
-    var $progress = $(this.ui.header_form_upload_progress);
+    console.log('upload finish');
+    var $progress = $(this.ui.header_form_upload_progress),
+        $video = $(this.ui.header_form_upload_input),
+        self = this;
     $progress.removeClass('on');
-    _.delay(function(){ $progress.width(0); },500)
+    $video.val(null);
+    _.delay(function(){ 
+      self.closeUpload();
+      $progress.width(0);
+    },500);
   },
 
   updateUploadProgress : function(ratio){
+    console.log('upload progress',ratio)
     $(this.ui.header_form_upload_progress).width(ratio + '%');
   }
 
@@ -206,25 +215,16 @@ App.socket.on('form-alert',function(alert,type,user){
   App.Header.formAlert(alert,type,user);
 });
 
-App.socket.on('upload-start',function(){
-  console.log('socket receive upload start')
-  App.Header.showUploadProgress();
-});
-
 App.socket.on('upload-progress',function(ratio){
-  console.log('socket receive upload-progress : ' + ratio);
+  if(ratio==0)App.Header.showUploadProgress();
   App.Header.updateUploadProgress(ratio);  
-});
-
-App.socket.on('upload-finish',function(){
-  console.log('socket receive upload finish')
-  App.Header.hideUploadProgress();
+  if(ratio==100)App.Header.hideUploadProgress();
 });
 
 App.UserConnected = function(user){
   App.User = user;
   App.Log = true;
-  sessionStorage.setItem('user',JSON.stringify(App.User));
+  localStorage.setItem('user',JSON.stringify(App.User));
   App.UpdateInterface();
   App.Navigation.openNavigation();
 }
@@ -232,7 +232,7 @@ App.UserConnected = function(user){
 App.UserDisconnect = function(){
   App.Log = false;
   delete App.User;
-  sessionStorage.clear();
+  localStorage.clear();
   App.UpdateInterface();
   App.Navigation.closeNavigation();
 }

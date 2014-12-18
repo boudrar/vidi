@@ -95,12 +95,11 @@ a img {
 }
 html,
 body {
-  min-height: 100%;
+  height: 100%;
 }
 body {
   font-family: 'Futura';
   font-size: 16px;
-  padding-top: 50px;
   overflow-x: hidden;
   background: -webkit-linear-gradient(45deg, rgba(103,133,252,0.9), rgba(232,51,57,0.9));
   background: -moz-linear-gradient(45deg, rgba(103,133,252,0.9), rgba(232,51,57,0.9));
@@ -139,6 +138,9 @@ h3 {
   font-size: 24px;
 }
 h4 {
+  font-size: 20px;
+}
+h5 {
   font-size: 16px;
 }
 input,
@@ -157,25 +159,28 @@ button {
   -ms-transition: 500ms;
   transition: 500ms;
   overflow: auto;
-  -webkit-transform-origin: 0 0;
-  -moz-transform-origin: 0 0;
-  -o-transform-origin: 0 0;
-  -ms-transform-origin: 0 0;
-  transform-origin: 0 0;
+  -webkit-transform: translateY(60px);
+  -moz-transform: translateY(60px);
+  -o-transform: translateY(60px);
+  -ms-transform: translateY(60px);
+  transform: translateY(60px);
 }
 #App.on {
-  -webkit-transform: translateX(150px);
-  -moz-transform: translateX(150px);
-  -o-transform: translateX(150px);
-  -ms-transform: translateX(150px);
-  transform: translateX(150px);
+  -webkit-transform: translateX(150px) translateY(60px);
+  -moz-transform: translateX(150px) translateY(60px);
+  -o-transform: translateX(150px) translateY(60px);
+  -ms-transform: translateX(150px) translateY(60px);
+  transform: translateX(150px) translateY(60px);
 }
 #App.off {
-  -webkit-transform: rotateX(90deg);
-  -moz-transform: rotateX(90deg);
-  -o-transform: rotateX(90deg);
-  -ms-transform: rotateX(90deg);
-  transform: rotateX(90deg);
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  -webkit-transform: translateX(-50px) translateY(60px);
+  -moz-transform: translateX(-50px) translateY(60px);
+  -o-transform: translateX(-50px) translateY(60px);
+  -ms-transform: translateX(-50px) translateY(60px);
+  transform: translateX(-50px) translateY(60px);
 }
 .button-hover,
 .header-navigation-button,
@@ -216,7 +221,8 @@ button {
   border-radius: 2px;
 }
 .absolute-center,
-.header-title {
+.header-title,
+.home-video-thumb:before {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -944,6 +950,7 @@ button {
 .header-form-upload-drop {
   background: rgba(0,0,0,0.25);
   height: 200px;
+  margin-top: 5px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
   border: 1px solid dotted;
@@ -974,11 +981,11 @@ button {
   background: -o-linear-gradient(0deg, rgba(0,214,242,0.75), rgba(77,95,193,0.75));
   background: -ms-linear-gradient(0deg, rgba(0,214,242,0.75), rgba(77,95,193,0.75));
   background: linear-gradient(90deg, rgba(0,214,242,0.75), rgba(77,95,193,0.75));
-  -webkit-transition: 500ms;
-  -moz-transition: 500ms;
-  -o-transition: 500ms;
-  -ms-transition: 500ms;
-  transition: 500ms;
+  -webkit-transition: 500ms, width 100ms;
+  -moz-transition: 500ms, width 100ms;
+  -o-transition: 500ms, width 100ms;
+  -ms-transition: 500ms, width 100ms;
+  transition: 500ms, width 100ms;
 }
 .header-form-upload-progress.on {
   height: 5px;
@@ -1112,14 +1119,55 @@ button {
 h1 {
   text-align: center;
 }
-section {
-  height: 400px;
-  width: 100%;
-  max-width: 800px;
-  margin: 2px auto;
-  background: rgba(0,0,0,0.25);
+.home-video-thumb {
+  position: relative;
+  float: left;
+  width: calc(25% - 10px);
+  height: 200px;
+  margin: 5px;
+  background: rgba(0,0,0,0.5);
+  cursor: pointer;
   -webkit-border-radius: 2px;
   border-radius: 2px;
+  -webkit-transition: 500ms;
+  -moz-transition: 500ms;
+  -o-transition: 500ms;
+  -ms-transition: 500ms;
+  transition: 500ms;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+.home-video-thumb:before {
+  content: '\f04b';
+  font-family: FontAwesome;
+  color: rgba(0,0,0,0.5);
+  font-size: 40px;
+  -webkit-transition: 500ms;
+  -moz-transition: 500ms;
+  -o-transition: 500ms;
+  -ms-transition: 500ms;
+  transition: 500ms;
+}
+.home-video-thumb:hover {
+  background: rgba(0,0,0,0.25);
+}
+.home-video-thumb:hover:before {
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(1.2);
+  -moz-transform: translateX(-50%) translateY(-50%) scale(1.2);
+  -o-transform: translateX(-50%) translateY(-50%) scale(1.2);
+  -ms-transform: translateX(-50%) translateY(-50%) scale(1.2);
+  transform: translateX(-50%) translateY(-50%) scale(1.2);
+}
+.home-video-thumb.on {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+.home-video-thumb-title {
+  width: 100%;
+  color: rgba(255,255,255,0.9);
+  text-align: center;
 }
 .profil {
   padding: 0 10px;
