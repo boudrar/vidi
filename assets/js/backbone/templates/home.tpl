@@ -11,10 +11,10 @@
 	<div class="home-video-empty">No video</div>
 
 <% }else{
-	
+
 	_.each(items, function(item){ %>
 
-		<div class="home-video-thumb">
+		<div class="home-video-thumb" data-id="<%= item._id %>">
 			<h4 class="home-video-thumb-title"><%= item.title %></h4>
 		</div>
 

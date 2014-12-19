@@ -43,14 +43,15 @@ input,button
 	margin 0 auto
 	height 'calc(100% - %s)' % (headerHeight*1.5)
 	transition 500ms
-	overflow auto
 	transform translateY(headerHeight + 10)
 	&.on
 		transform translateX(navWidth*0.5) translateY(headerHeight + 10)
 	&.off
 		opacity 0
 		transform translateX(-50px) translateY(headerHeight + 10)
-
+.app-view
+	position relative
+	height 100% 
 .button-hover
 	cursor pointer
 	box-shadow 0 0 1px 0 Black

@@ -11,7 +11,7 @@
 	</div>
 </div>
 <div class="navigation-menu">
-	<div class="menu_item menu_home on"><h3>home</h3></div>
+	<div class="menu_item menu_home"><h3>home</h3></div>
 	<div class="menu_item menu_profil"><h3>profil</h3></div>
 	<div class="menu_item menu_gallery"><h3>gallery</h3></div>
 </div>

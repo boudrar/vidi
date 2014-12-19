@@ -221,6 +221,22 @@ App.socket.on('upload-progress',function(ratio){
   if(ratio==100)App.Header.hideUploadProgress();
 });
 
+App.socket.on('upload-success',function(msg,user,video){
+  //USER PROFIL UPDATE
+  console.log('socket upload success receive',msg,user,video);
+  App.User = user;
+  localStorage.setItem('user',JSON.stringify(App.User));
+  App.Navigation.updateNavigation(App.User);
+
+  //VIDEO ADD
+  App.UpdateVideoCollection(video);
+});
+
+App.UpdateVideoCollection = function(video){
+  App.VideoCollections.add(video);
+  if(!App.Home.isDestroyed)App.Home.addVideo();
+}
+
 App.UserConnected = function(user){
   App.User = user;
   App.Log = true;

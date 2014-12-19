@@ -25,19 +25,26 @@ App.initialize = function(){
 App.ready = function(){
 	console.log('app ready');
 
-	_.delay(function(){ $('body').addClass('ready'); },1500);
-	_.delay(function(){ $('.loader').remove(); },2000);
-
 	this.addRegions({
 		AppRegion: '#App',
 		HeaderRegion:'#Header',
 		NavigationRegion:'#Navigation'
 	});
 
-	$('.menu_home').addClass('on');
-	this.loadRegion(this.Home);
-	this.HeaderRegion.show(App.Header, { preventDestroy: true });
-	this.NavigationRegion.show(App.Navigation, { preventDestroy: true });
+	this.HeaderRegion.show(this.Header, { preventDestroy: true });
+	this.NavigationRegion.show(this.Navigation, { preventDestroy: true });
+}
+
+App.socket.on('get-user-videos',function(videos){
+	console.log('SOCKET get-user-videos receive');
+	App.CreateVideosCollection(videos);
+	App.updateHistory();
+	_.delay(function(){ $('body').addClass('ready'); },1500);
+	_.delay(function(){ $('.loader').remove(); },2000);
+});
+App.CreateVideosCollection = function(videos){
+	App.VideoCollections = new App.Collections.Videos(videos);
+	if(!App.Home.isDestroyed)App.Home.updateVideos();
 }
 
 

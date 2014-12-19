@@ -3,10 +3,9 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Vidi</title>
+	<!-- Init style -->
 	<link href="assets/css/utils/FontAwesome.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	
-	<script src="/socket.io/socket.io.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">	
 </head>
 	<body>
 		
@@ -30,20 +29,34 @@
 	    </div>
 		
 	</body>
-	
+
+	<link href="//vjs.zencdn.net/4.11/video-js.css" rel="stylesheet">
+	<script src="//vjs.zencdn.net/4.11/video.js"></script>
+
+
+	<!-- Chartist.js -->
+	<script src="assets/bower_components/chartist/dist/chartist.min.js"></script>
+	<link href="assets/bower_components/chartist/dist/chartist.min.css" rel="stylesheet" type="text/css" />
+
+	<!-- Libs ($,_,backbone,marionette) -->
 	<script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="assets/bower_components/underscore/underscore.js"></script>
 	<script src="assets/bower_components/backbone/backbone.js"></script>
   	<script src="assets/bower_components/marionette/lib/backbone.marionette.min.js"></script>
 
+	<!-- Init App & Socket Session -->
+	<script src="/socket.io/socket.io.js"></script>
   	<script src="assets/js/session.js"></script>
 
 	<!-- Templates -->
 	<script id="header-tpl" type="text/x-template" src="assets/js/backbone/templates/header.tpl"></script>
 	<script id="navigation-tpl" type="text/x-template" src="assets/js/backbone/templates/navigation.tpl"></script>
+
  	<script id="home-tpl" type="text/x-template" src="assets/js/backbone/templates/home.tpl"></script>
  	<script id="profil-tpl" type="text/x-template" src="assets/js/backbone/templates/profil.tpl"></script>
  	<script id="gallery-tpl" type="text/x-template" src="assets/js/backbone/templates/gallery.tpl"></script>
+
+ 	<script id="video-tpl" type="text/x-template" src="assets/js/backbone/templates/video.tpl"></script>
 
 	<!--Models-->
 	<script src="assets/js/backbone/models/video.js"></script>
@@ -54,14 +67,15 @@
 	<!-- Views -->
 	<script src="assets/js/backbone/views/header.js"></script>
 	<script src="assets/js/backbone/views/navigation.js"></script>
+
   	<script src="assets/js/backbone/views/home.js"></script>
   	<script src="assets/js/backbone/views/profil.js"></script>
   	<script src="assets/js/backbone/views/gallery.js"></script>
 
+  	<script src="assets/js/backbone/views/video.js"></script>
 
+	<!-- App script -->
 	<script src="assets/js/init.js"></script>
-	<script src="assets/js/app.js"></script>
-
-	
+	<script src="assets/js/app.js"></script>	
 
 </html>

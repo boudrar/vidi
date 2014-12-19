@@ -5,7 +5,7 @@ App.Views.Gallery = Marionette.LayoutView.extend({
   
   tagName: 'div',
 
-  className: 'gallery',
+  className: 'gallery app-view',
 
   template: '#gallery-tpl',
 

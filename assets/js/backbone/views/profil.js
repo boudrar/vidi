@@ -5,7 +5,7 @@ App.Views.Profil = Marionette.LayoutView.extend({
   
   tagName: 'div',
 
-  className: 'profil',
+  className: 'profil app-view',
 
   template: '#profil-tpl',
 

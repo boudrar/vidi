@@ -64,34 +64,53 @@ App.Views.Navigation = Marionette.ItemView.extend({
   openHomeLink: function(e){
     if(!$(this.ui.menu_home).hasClass('on')){
       this.toggleMenuItem(e);
-      delete App.Home;
-      App.Home = new App.Views.Home({ collection:App.VideoCollections });
-      App.loadMenuRegion(App.Home);
+      location.hash='home';
+      this.updateAppRegion(location.hash);
     }
   },
 
   openProfilLink: function(e){
     if(!$(this.ui.menu_profil).hasClass('on')){
       this.toggleMenuItem(e);
-      delete App.Profil;
-      App.Profil = new App.Views.Profil();
-      App.loadMenuRegion(App.Profil);
+      location.hash='profil';
+      this.updateAppRegion(location.hash);
     }
   },
 
   openGalleryLink: function(e){
     if(!$(this.ui.menu_gallery).hasClass('on')){
       this.toggleMenuItem(e);
-      delete App.Gallery;
-      App.Gallery = new App.Views.Gallery();
-      App.loadMenuRegion(App.Gallery);
+      location.hash='gallery';
+      //this.updateAppRegion(location.hash);
     }
   },
 
   toggleMenuItem: function(e){
-
     $(this.ui.menu_item).removeClass('on');
     $(e.currentTarget).addClass('on');
+  },
+  
+  updateAppRegion: function(region){
+    if(region=='')region='home';
+    switch(region){
+      case 'home':
+        delete App.Home;
+        App.Home = new App.Views.Home({ collection:App.VideoCollections });
+        App.loadMenuRegion(App.Home);
+        break;
+      case 'profil':
+        delete App.Profil;
+        App.Profil = new App.Views.Profil();
+        App.loadMenuRegion(App.Profil);
+        break;
+      case 'gallery':
+        delete App.Gallery;
+        App.Gallery = new App.Views.Gallery();
+        App.loadMenuRegion(App.Gallery);
+        break;
+    }
+    $(this.ui.menu_item).removeClass('on');
+    $('.menu_'+region).addClass('on');
 
   },
 
@@ -115,9 +134,3 @@ App.Views.Navigation = Marionette.ItemView.extend({
 
 App.Navigation = new App.Views.Navigation();
 
-App.socket.on('update-profil',function(msg,user){
-  console.log('socket update profil receive',msg,user);
-  App.User = user;
-  localStorage.setItem('user',JSON.stringify(App.User));
-  App.Navigation.updateNavigation(App.User);
-});

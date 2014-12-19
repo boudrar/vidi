@@ -24,7 +24,7 @@ App.io.on('connection', function(socket){
   console.log('a user connected',socket.id);
 
   socket.on('userknown',function(id){
-  	App.video.check(id,socket);
+  	App.video.checkUserVideos(id,socket);
   });
 
   socket.on('login',function(user){
