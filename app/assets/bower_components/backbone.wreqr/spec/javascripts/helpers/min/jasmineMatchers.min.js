@@ -1,0 +1,1 @@
+beforeEach(function(){this.addMatchers({toHaveOwnProperty:function(t){var r=this.actual;return r.hasOwnProperty(t)}})});

@@ -1,0 +1,147 @@
+
+.navigation
+	position fixed
+	top headerHeight
+	left 0
+	width navWidth 
+	height 'calc(100% - %s)' % headerHeight
+	transform translateX(-100%)
+	background rgba(0,0,0,.9)
+	border-right 1px solid Black
+	transition 500ms
+	z-index 2
+	overflow-y auto
+	overflow-x hidden
+	opacity 0
+	&.on
+		opacity 1
+		transform translateX(0)
+	&.wide
+		width navWidth*2 
+		> .navigation-card
+			width navProfilWidth*2 !important
+		
+.navigation-card	
+	position relative
+	width navProfilWidth !important
+	border-radius borderRadius
+	float left
+	margin 5px
+//////////////////////////////////////////////////////
+
+.navigation-profil
+	background Black 
+	transition 500ms
+	transform-origin 50% 0
+	transform scaleY(0)
+	height 0	
+	&.on
+		transform scaleY(1)		
+		height navProfilHeight
+		
+.navigation-profil-toggle	
+	@extend .button
+	position absolute
+	top 5px
+	right @top	
+	z-index 1
+	&:before
+		z-index 1
+		content '\f013'
+		position relative
+		display inline-block
+		font-family FontAwesome 
+		color White
+		font-size iconSize - 20
+		
+.navigation-profil-image
+	position absolute
+	width navProfilWidth*0.4
+	height 100%
+	top 0
+	left 0 
+	> .img
+		background BlackLight
+		background-image url('../img/test01.jpg') 
+		background-size cover
+		width navProfilHeight*0.6
+		height @width
+		margin-top navProfilHeight*0.2 
+		margin-left (navProfilWidth*0.4 - @width)*0.5 
+		border none
+		outline none  
+		border-radius 50%		
+		border 3px solid MainColor
+.navigation-profil-info
+	position absolute
+	width navProfilWidth*0.6
+	height 100%
+	top 0
+	right 0 
+	padding-left 5px
+	border-left 2px solid MainColor 
+	box-sizing border-box
+	> h3,h4
+		color White
+		text-overflow ellipsis 
+		overflow hidden
+		cursor default
+	> h3
+		margin 15px 5px
+	> h4
+		margin 5px
+
+//////////////////////////////////////////////////////
+.navigation-profil-chart	
+	background Black
+	transform scaleY(0)
+	transform-origin 50% 0
+	transition 500ms
+	&.on
+		transform scaleY(1)	
+		
+	.ct-point
+		stroke-width 6px
+	.ct-grid
+		stroke WhiteLighter
+	.ct-series .ct-line
+		stroke-width 1px
+
+	.ct-series.ct-series-a .ct-bar,
+	.ct-series.ct-series-a .ct-line,
+	.ct-series.ct-series-a .ct-point,
+	.ct-series.ct-series-a .ct-slice.ct-donut
+		stroke indigo
+	.ct-series.ct-series-b .ct-bar,
+	.ct-series.ct-series-b .ct-line,
+	.ct-series.ct-series-b .ct-point,
+	.ct-series.ct-series-b .ct-slice.ct-donut
+		stroke blue
+	.ct-series.ct-series-c .ct-bar,
+	.ct-series.ct-series-c .ct-line,
+	.ct-series.ct-series-c .ct-point,
+	.ct-series.ct-series-c .ct-slice.ct-donut
+		stroke cyan		
+	.ct-label,
+	.ct-label.ct-vertical,
+	.ct-label.ct-horizontal
+		color White
+
+
+		
+//////////////////////////////////////////////////////
+
+
+.menu_item
+	@extend .button
+	padding 10px
+	border-radius borderRadius
+	color White
+	text-transform uppercase	
+	text-align center
+	transition 500ms
+	&.on
+		background BlackLight
+		
+
+	
