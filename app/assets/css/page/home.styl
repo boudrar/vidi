@@ -6,15 +6,22 @@ h1
 .home-video-thumb
 	position relative
 	float left
-	width calc(25% - 10px)
-	height 200px
-	margin 5px
 	background Black
 	cursor pointer
 	border-radius borderRadius
 	transition 500ms
-	opacity 0
+	width calc(25% - 10px)
+	margin 5px
+	transform scale(0)
+	opacity 0	
+	&.new
+		width 0
+		margin 0
 	&:before
+		content ''
+		display block
+		padding-top 100%
+	&:after
 		content '\f04b'
 		font-family FontAwesome
 		@extend .absolute-center
@@ -23,12 +30,25 @@ h1
 		transition 500ms
 	&:hover
 		background BlackLight
-		&:before
+		&:after
 			transform translateX(-50%) translateY(-50%) scale(1.2)
 	&.on
 		opacity 1
+		transform scale(1)
+		
+	@media (max-width:breakpoint-screen)
+		width calc(33.333% - 10px) !important
+	@media (max-width:breakpoint-tablet)
+		width calc(50% - 10px) !important
+	@media (max-width:breakpoint-mobile)
+		width calc(100% - 10px) !important
+		
 .home-video-thumb-title
-	width 100% 
+	position absolute
 	color White
+	width 100% 
 	text-align center
+	top 50%
+	transform translateY(-50%)
+	margin-top iconSize 
 		 

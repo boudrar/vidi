@@ -25,7 +25,7 @@ var css_origin = './app/assets/css/';
 var css_files = [css_origin + "*.styl",css_origin + "**/*.styl"];
 
 gulp.task('css', function () {
-  gulp.src('./src/styles/style.styl')
+  gulp.src(css_origin + 'style.styl')
     .pipe(plumber())
     .pipe(stylus({
       use: nib(),
@@ -54,9 +54,10 @@ var browserSync = require('browser-sync');
 var reload      = browserSync.reload;
 gulp.task('browser-sync', function() {
     browserSync({
-        server: {
+        proxy: "localhost:1337",
+        /*server: {
             baseDir: "./app/"
-        },
+        },*/
         port:8086
     });
 });

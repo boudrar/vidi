@@ -175,13 +175,13 @@ App.Views.Header = Marionette.ItemView.extend({
     var formData = new FormData();
     var video = $(this.ui.header_form_upload_input).prop('files')[0];
     video.socketId = App.socket.io.engine.id
-    console.log(video);
+    console.log('Header.upload()',video);
     formData.append('video',video,video.name);
 
 
     var xhr = new XMLHttpRequest(),
         params = '?sid='+video.socketId+'&uid='+App.User._id;
-    xhr.open('POST', '/post/'+params, true);
+    xhr.open('POST', '/v/'+params, true);
     xhr.send(formData);
   },
 
@@ -209,8 +209,6 @@ App.Views.Header = Marionette.ItemView.extend({
   }
 
 });
-
-
 App.Header = new App.Views.Header();
 
 App.socket.on('form-alert',function(alert,type,user){

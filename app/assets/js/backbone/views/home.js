@@ -24,9 +24,11 @@ App.Views.Home = Marionette.ItemView.extend({
 
   onRender: function() {
   	this.collection=App.VideoCollections;
-  	console.log('Home render',this.collection);
-
-    this.refreshVideoCollections();
+  	console.log('Home.onRender()',this.collection);
+    var self = this;
+    setTimeout(function(){
+      self.refreshVideoCollections();
+    });
   },
 
   updateVideos: function(){
@@ -35,12 +37,14 @@ App.Views.Home = Marionette.ItemView.extend({
   },
   
   addVideo: function(){
-    var video = this.collection.last();
-    $(this.ui.home_video_container)
-      .prepend("<video id='"+video.id+"' autoplay muted>"+
-                  "<source src='"+video.attributes.source+"'/>"+
-                " </video>");
-
+    var self = this,
+        video = self.collection.last();
+    console.log('Home.addVideo()',video);
+    self.$el
+      .prepend('<div class="home-video-thumb new" data-id="'+video.id+'"><h4 class="home-video-thumb-title">'+video.attributes.title+'</h4></div>');
+      setTimeout(function(){
+        self.$el.children().first().addClass('on').removeClass('new');
+      },250);    
   },
 
   refreshVideoCollections: function(){
@@ -51,7 +55,6 @@ App.Views.Home = Marionette.ItemView.extend({
       setTimeout(function(){
         $video.addClass('on');
       },delta*0.5);
-
     });
   },
 

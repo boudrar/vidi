@@ -1,5 +1,6 @@
-var App = require('./settings')
-    userlog = App.chalk.bold.white;
+var App = require('./settings'),
+    chalk = require('chalk'),
+    userlog = chalk.bold.white;
 
 App.io.on('connection', function(socket){
   console.log(userlog('USER CONNECTED',socket.id));

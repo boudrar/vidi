@@ -1,5 +1,6 @@
-var App = require('./settings');
-		crudlog = App.chalk.bold.magenta;
+var App = require('./settings'),
+		chalk = require('chalk'),
+		crudlog = chalk.bold.magenta;
 //////////////////// CRUD VIDEO
 
 // CREATE VIDEO - express.post
@@ -9,8 +10,8 @@ App.express.post('/v', function(req,res){
   console.log(crudlog('CRUD POST VIDEO'));
 });
 // READ VIDEO - express.get
-App.express.get('/v', function(req,res){
-	console.log(crudlog('CRUD GET VIDEO',req.query));
+App.express.get('/v/:id', function(req,res){
+	console.log(crudlog('CRUD GET VIDEO',req.query.id));
 });
 // UPDATE VIDEO - express.put
 App.express.put('/v', function(req,res){
